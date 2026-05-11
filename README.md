@@ -244,8 +244,8 @@ Current `task001` baseline:
 
 - ARC-AGI: 6 pass, 0 fail;
 - ARC-GEN: 262 pass, 0 fail;
-- parameters: 40;
-- memory: 14688 bytes;
-- estimated score: 15.402.
+- parameters: 5;
+- memory: 14328 bytes;
+- estimated score: 15.430.
 
 Next milestone: compress the `task001` solution and generalize the pipeline to additional task families.

@@ -61,3 +61,17 @@ Validation summary:
 - Estimated score: 15.402.
 
 The model is a correctness baseline rather than a compression endpoint. The next research question is whether the same transformation can be expressed with fewer constants and less intermediate memory.
+
+## 2026-05-11 Task001 Compression Pass
+
+Compressed the `task001` baseline by moving Slice and Upsample constants into opset-7 attributes, replacing the explicit color-zero selector with channel padding, and using `Upsample` instead of block-repeat reshape/tile operations for the mask. The model remains correct on all public examples.
+
+Compression result:
+
+- ARC-AGI examples: 6 pass, 0 fail.
+- ARC-GEN examples: 262 pass, 0 fail.
+- Parameters: 5, down from 40.
+- Memory: 14328 bytes, down from 14688.
+- Estimated score: 15.430, up from 15.402.
+
+Remaining cost is dominated by intermediate tensors, not parameters. The next compression target is reducing the `pattern_tiled`, `active_blocks`, and inactive color-zero intermediate memory.
