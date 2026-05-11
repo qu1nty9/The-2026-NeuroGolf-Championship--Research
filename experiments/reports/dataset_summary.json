@@ -1,0 +1,30 @@
+{
+  "colors": {
+    "0": 17714553,
+    "1": 1652940,
+    "2": 1713354,
+    "3": 1578102,
+    "4": 1189205,
+    "5": 1783579,
+    "6": 1104463,
+    "7": 937190,
+    "8": 1456954,
+    "9": 963633
+  },
+  "extra_task_ids": [],
+  "invalid_tasks": [],
+  "max_height": 70,
+  "max_width": 75,
+  "missing_task_ids": [],
+  "oversize_pairs": 371,
+  "pair_counts": {
+    "arc-gen": 100000,
+    "test": 416,
+    "train": 1302
+  },
+  "task_files": 400,
+  "tasks_with_oversize_pairs": 6,
+  "tasks_with_size_changes": 138,
+  "total_pairs": 101718,
+  "valid_tasks": 400
+}

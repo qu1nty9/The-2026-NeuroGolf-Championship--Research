@@ -1,0 +1,43 @@
+# macOS and editor metadata
+**/.DS_Store
+~$*.docx
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Python caches and tooling
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Python packaging artifacts
+build/
+dist/
+*.egg-info/
+
+# Local environments and secrets
+.venv/
+venv/
+.env
+.env.*
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Raw competition data is kept outside git.
+data/
+
+# Generated competition artifacts
+models/candidates/*.onnx
+models/verified/*.onnx
+submissions/*.zip
+experiments/reports/*.json
+experiments/reports/*.jsonl
+experiments/reports/*.csv
+!experiments/reports/dataset_summary.json

@@ -1,0 +1,18 @@
+[project]
+name = "neurogolf-agent"
+version = "0.1.0"
+description = "Autonomous research scaffold for the 2026 NeuroGolf Championship."
+requires-python = ">=3.10"
+dependencies = [
+  "numpy",
+  "onnx",
+  "onnxruntime",
+  "onnx-tool",
+  "matplotlib",
+  "ipython",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
