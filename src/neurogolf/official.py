@@ -2,12 +2,15 @@ from __future__ import annotations
 
 import importlib
 import math
+import os
 import sys
 from pathlib import Path
 from types import ModuleType
 
 from .config import EXCLUDED_ONNX_OPS, ONNX_FILE_SIZE_LIMIT_BYTES, PATHS
 
+
+os.environ.setdefault("MPLCONFIGDIR", str(PATHS.root / ".cache" / "matplotlib"))
 
 RUNTIME_DEPENDENCIES = {
     "IPython.display": "ipython",
@@ -20,6 +23,7 @@ RUNTIME_DEPENDENCIES = {
 
 
 def missing_runtime_dependencies() -> list[str]:
+    Path(os.environ["MPLCONFIGDIR"]).mkdir(parents=True, exist_ok=True)
     missing = []
     for import_name, package_name in RUNTIME_DEPENDENCIES.items():
         try:

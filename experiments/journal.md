@@ -48,3 +48,16 @@ Created the initial compact research workspace around the local NeuroGolf datase
 
 No meta-review recorded yet.
 
+## 2026-05-11 Task001 Self-Tiling Baseline
+
+Built the first complete model-generation and validation loop for `task001`. The baseline implements the observed self-tiling rule: each non-zero input cell activates a copy of the original `3x3` pattern, while each zero input cell activates a `3x3` color-zero block. The generated ONNX model passes all available public examples for the task.
+
+Validation summary:
+
+- ARC-AGI examples: 6 pass, 0 fail.
+- ARC-GEN examples: 262 pass, 0 fail.
+- Parameters: 40.
+- Memory: 14688 bytes.
+- Estimated score: 15.402.
+
+The model is a correctness baseline rather than a compression endpoint. The next research question is whether the same transformation can be expressed with fewer constants and less intermediate memory.

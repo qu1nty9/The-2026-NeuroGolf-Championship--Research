@@ -75,6 +75,36 @@ def cmd_log_event(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_build_task001_baseline(args: argparse.Namespace) -> int:
+    from .baselines import save_task001_self_tiling_model
+    from .validation import validate_model
+
+    output = save_task001_self_tiling_model(args.output)
+    print(f"Wrote {output}")
+    if args.validate:
+        report_path = args.report or str(PATHS.reports / "task001_baseline_validation.json")
+        result = validate_model(output, 1, data_dir=args.data_dir, report_path=report_path)
+        print(json.dumps(result, indent=2, sort_keys=True))
+    return 0
+
+
+def cmd_validate_model(args: argparse.Namespace) -> int:
+    from .validation import validate_model
+
+    report_path = args.report
+    if report_path is None:
+        report_path = str(PATHS.reports / f"task{int(args.task_id):03d}_validation.json")
+    result = validate_model(
+        args.model,
+        args.task_id,
+        data_dir=args.data_dir,
+        report_path=report_path,
+        log_event=not args.no_log,
+    )
+    print(json.dumps(result, indent=2, sort_keys=True))
+    return 0 if result["status"] == "passed" else 1
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="neurogolf")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -103,6 +133,21 @@ def build_parser() -> argparse.ArgumentParser:
     log_event.add_argument("--notes", default="")
     log_event.add_argument("--log-dir", default=str(PATHS.experiments))
     log_event.set_defaults(func=cmd_log_event)
+
+    build_task001 = subparsers.add_parser("build-task001-baseline")
+    build_task001.add_argument("--output", default=str(PATHS.candidate_models / "task001.onnx"))
+    build_task001.add_argument("--data-dir", default=str(PATHS.data))
+    build_task001.add_argument("--report")
+    build_task001.add_argument("--no-validate", dest="validate", action="store_false")
+    build_task001.set_defaults(func=cmd_build_task001_baseline, validate=True)
+
+    validate = subparsers.add_parser("validate-model")
+    validate.add_argument("task_id")
+    validate.add_argument("model")
+    validate.add_argument("--data-dir", default=str(PATHS.data))
+    validate.add_argument("--report")
+    validate.add_argument("--no-log", action="store_true")
+    validate.set_defaults(func=cmd_validate_model)
 
     return parser
 

@@ -1,4 +1,4 @@
 {"kind":"project_init","notes":"Created initial project architecture after adding the local NeuroGolf dataset.","status":"completed","timestamp_utc":"2026-05-11T00:00:00+00:00"}
 {"kind":"scaffold_validation","notes":"project_architecture_validated","status":"completed","task_id":null,"timestamp_utc":"2026-05-11T17:01:38+00:00"}
-
 {"kind": "architecture_compaction", "notes": "compacted_to_experiments_workspace", "status": "completed", "task_id": null, "timestamp_utc": "2026-05-11T19:53:32+00:00"}
+{"arc_agi_fail": 0, "arc_gen_fail": 0, "estimated_score": 15.402494277087087, "kind": "model_validation", "memory_bytes": 14688, "model_path": "/Users/yaroslav/Documents/Kaggle/The 2026 NeuroGolf Championship/models/candidates/task001.onnx", "params": 40, "status": "passed", "task_id": "001", "timestamp_utc": "2026-05-11T20:36:17+00:00"}

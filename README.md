@@ -142,6 +142,7 @@ Commands can be run directly from the repository root with `PYTHONPATH=src`:
 PYTHONPATH=src python -m neurogolf dataset-summary --data-dir data --write experiments/reports/dataset_summary.json
 PYTHONPATH=src python -m neurogolf inspect-task 001 --data-dir data
 PYTHONPATH=src python -m neurogolf doctor
+PYTHONPATH=src python -m neurogolf build-task001-baseline
 PYTHONPATH=src python -m unittest discover -s tests
 ```
 
@@ -189,6 +190,14 @@ Initial families:
 
 For `task001`, the first useful milestone is a compact ONNX candidate that implements the self-tiling rule without memorizing all `arc-gen` examples.
 
+Current baseline command:
+
+```bash
+PYTHONPATH=src python -m neurogolf build-task001-baseline
+```
+
+This writes `models/candidates/task001.onnx`, validates it with the official local utilities, stores a report in `experiments/reports/task001_baseline_validation.json`, and appends a structured event to `experiments/experiments.jsonl`.
+
 ## GitHub Workflow
 
 The repository is prepared for GitHub:
@@ -229,6 +238,14 @@ eval: record task001 validation failure
 
 ## Status
 
-Project scaffold is ready.
+Project scaffold is ready, and the first `task001` baseline passes local public validation.
 
-Next milestone: implement the first repeatable baseline generator and validator for `task001`.
+Current `task001` baseline:
+
+- ARC-AGI: 6 pass, 0 fail;
+- ARC-GEN: 262 pass, 0 fail;
+- parameters: 40;
+- memory: 14688 bytes;
+- estimated score: 15.402.
+
+Next milestone: compress the `task001` solution and generalize the pipeline to additional task families.
